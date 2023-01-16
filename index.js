@@ -63,12 +63,12 @@ function appMenu() {
                         if (pass) {
                             return true;
                         }
-                        return 'Please enter a positive number';
+                        return 'Please enter a positive number.';
                     },
                 }, 
             ])
-            .then((answers)) => {
-            const manager = new Manager(
+            .then((answers) => {
+             const manager = new Manager (
                 answers.managerName,
                 answers.managerId,
                 answers.managerEmail,
@@ -95,15 +95,16 @@ function appMenu() {
                     ],
                 },
             ])
+
             .then((userChoice) => {
                 switch (userChoice.memberChoice) {
-                    case 'Engineer';
+                    case 'Engineer':
                         addEngineer();
                         break;
-                    case 'Intern';
+                    case 'Intern':
                         addIntern();
                         break;
-                    default ;
+                    default:
                         buildTeam();
 
                 }
@@ -116,7 +117,7 @@ function appMenu() {
                 {
                     type: 'input',
                     name: 'engineerName',
-                    mesage: "What is the Engineer's Name?",
+                    message: "What is the Engineer's Name?",
                     validate: (answer) => {
                         if (answer !== '') {
                             return true;
@@ -235,7 +236,7 @@ function appMenu() {
     },
 },
 ])
-    .then((answers)) => {
+    .then((answers) => {
     const intern = new Intern(
         answers.internName,
         answers.internId,
@@ -247,7 +248,7 @@ function appMenu() {
     createTeam();
 });
 
-    }
+}
 
 function buildTeam() {
     if (!fs.existsSync(DIST_DIR)) {
