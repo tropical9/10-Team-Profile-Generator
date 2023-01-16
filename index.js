@@ -175,7 +175,7 @@ function appMenu() {
                     answers.engineerGithub
                 );
                 teamMembers.push(engineer);
-                idArray.psuh(answers.engineerId);
+                idArray.push(answers.engineerId);
                 createTeam();
             });
     }
