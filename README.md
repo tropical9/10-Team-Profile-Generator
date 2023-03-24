@@ -40,6 +40,10 @@ This application uses Jest for running the unit tests and Inquirer for collectin
 This application will take information and generate an HTML webpage.
 
 
+https://user-images.githubusercontent.com/113566952/227644893-13d24aed-a4c4-42e7-a9ed-8acd43e9a41c.mp4
+
+
+
 ## Credits
 
 ## License
