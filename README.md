@@ -3,11 +3,13 @@
 
 ## Description
 This project was created for the week 10 challange of my coding bootdcamp. The goal of this challenge is to build a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person. 
-
+```
 User Story
 AS A manager
 I WANT to generate a webpage that displays my team's basic info
 SO THAT I have quick access to their emails and GitHub profiles
+```
+```
 Acceptance Criteria
 GIVEN a command-line application that accepts user input
 WHEN I am prompted for my team members and their information
@@ -26,10 +28,13 @@ WHEN I select the intern option
 THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
+```
 
 ## Installation
 npm i inquirer@8.2.4
 https://www.npmjs.com/package/inquirer
+
+This application uses Jest for running the unit tests and Inquirer for collecting input from user. 
 
 ## Usage
 This application will take information and generate an HTML webpage.

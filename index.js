@@ -1,6 +1,7 @@
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
+const generateHTML = require('./src/createHTML');
 
 const inquirer = require('inquirer');
 const path = require('path');
@@ -17,6 +18,7 @@ const idArray = [];
 function appMenu() {
     function createManager() {
         console.log('Please enter information about your team');
+        
         inquirer
             .prompt([
                 {
