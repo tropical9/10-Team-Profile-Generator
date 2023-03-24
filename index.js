@@ -1,24 +1,58 @@
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const generateHTML = require('./src/createHTML');
+const Employee = require('./lib/employee');
 
+const generateHTML = require('./src/createHTML');
+// const email = require ('email-validator');
 const inquirer = require('inquirer');
-const path = require('path');
+// const path = require('path');
 const fs = require('fs');
 
-const DIST_DIR = path.resolve(__dirname, 'dist');
-const distPath = path.join(DIST_DIR, 'team.html');
 
-const createHTML = require('./src/createHTML');
+// const DIST_DIR = path.resolve(__dirname, 'dist');
+// const distPath = path.join(DIST_DIR, 'team.html');
 
 const teamMembers = [];
 const idArray = [];
 
-function appMenu() {
-    function createManager() {
-        console.log('Please enter information about your team');
-        
+    function createTeam() {
+        console.log('creating team')
+        inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'memberChoice',
+                    message: 'Which type of member would you like to add?',
+                    choices: [
+                        'Manager',
+                        'Engineer',
+                        'Intern',
+                        'Do not add',
+                    ],
+                },
+            ])
+
+            .then((userChoice) => {
+                switch (userChoice.memberChoice) {
+                    case 'Manager':
+                        addManager();
+                        break;
+                    case 'Engineer':
+                        addEngineer();
+                        break;
+                    case 'Intern':
+                        addIntern();
+                        break;
+                    default:
+                        buildTeam();
+
+                }
+            });
+    };
+    
+    
+    function addManager() {
         inquirer
             .prompt([
                 {
@@ -78,40 +112,11 @@ function appMenu() {
             );
             teamMembers.push(manager);
             idArray.push(answers.managerId);
+            console.log('Manager has been added to the team.');
             createTeam();
 
         });
-    }
-
-    function createTeam() {
-        inquirer
-            .prompt([
-                {
-                    type: 'list',
-                    name: 'memberChoice',
-                    message: 'Which type of member would you like to add?',
-                    choices: [
-                        'Engineer',
-                        'Intern',
-                        'Do not add',
-                    ],
-                },
-            ])
-
-            .then((userChoice) => {
-                switch (userChoice.memberChoice) {
-                    case 'Engineer':
-                        addEngineer();
-                        break;
-                    case 'Intern':
-                        addIntern();
-                        break;
-                    default:
-                        buildTeam();
-
-                }
-            });
-    }
+    };
 
     function addEngineer() {
         inquirer
@@ -178,9 +183,10 @@ function appMenu() {
                 );
                 teamMembers.push(engineer);
                 idArray.push(answers.engineerId);
+                console.log('Engineer has been added to the Team.');
                 createTeam();
             });
-    }
+    };
 
     function addIntern() {
         inquirer
@@ -243,32 +249,31 @@ function appMenu() {
         answers.internName,
         answers.internId,
         answers.internEmail,
-        answers.interSchool
+        answers.internSchool
     );
     teamMembers.push(intern);
     idArray.push(answers.internId);
+    console.log('Intern has been added to the team.')
     createTeam();
-});
+})
 
-}
+};
 
-function buildTeam() {
-    if (!fs.existsSync(DIST_DIR)) {
-        fs.mkdirSync(DIST_DIR);
-    }
-    fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
-}
+// function buildTeam() {
+//     if (!fs.existsSync(DIST_DIR)) {
+//         fs.mkdirSync(DIST_DIR);
+//     }
+//     fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
+// }
 
-createManager();
-}
-appMenu();
+// createManager();
+// }
+// appMenu();
 
+const buildTeam = () => {
+    fs.writeFile(`./dist/team.html`, generateHTML(teamMembers), (err) => {
+        err ? console.error(err) : console.log ('Team profile has been generated!')
+    })
+};
 
-
-
-
-
-
-
-
-
+createTeam();
