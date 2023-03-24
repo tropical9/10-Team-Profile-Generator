@@ -259,17 +259,6 @@ const idArray = [];
 
 };
 
-// function buildTeam() {
-//     if (!fs.existsSync(DIST_DIR)) {
-//         fs.mkdirSync(DIST_DIR);
-//     }
-//     fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
-// }
-
-// createManager();
-// }
-// appMenu();
-
 const buildTeam = () => {
     fs.writeFile(`./dist/team.html`, generateHTML(teamMembers), (err) => {
         err ? console.error(err) : console.log ('Team profile has been generated!')
